@@ -1,0 +1,67 @@
+.swiper-button-disabled {
+    display: none;
+}
+
+.line-clamp-3 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3; /* Số dòng bạn muốn giới hạn */
+    overflow: hidden;
+}
+
+.line-clamp-1 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* Số dòng bạn muốn giới hạn */
+    overflow: hidden;
+}
+
+.line-clamp-2 {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Số dòng bạn muốn giới hạn */
+    overflow: hidden;
+}
+
+.rotate-90 {
+    transform: rotate(90deg);
+}
+
+.custom-color-page {
+    filter: invert(49%) sepia(62%) saturate(889%) hue-rotate(161deg) brightness(87%) contrast(83%);
+}
+
+.filter-partner-shawdow {
+    box-shadow: 4px 8px 20px 0px rgba(23, 22, 22, 0.15);
+}
+
+.pager.active {
+    background: #1D93CD;
+}
+
+.pager.active span {
+    color: #fff
+}
+
+.filter-1D93CD {
+    filter: invert(56%) sepia(18%) saturate(2686%) hue-rotate(164deg) brightness(83%) contrast(91%);
+}
+
+@media (min-width: 1080px) {
+    .gradient-news {
+        background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 1.13%, rgba(0, 0, 0, 0.48) 31.78%, #000 93.56%);
+    }
+}
+
+.gradient-news-home {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.00) 0%, rgba(0, 0, 0, 0.50) 42.08%, rgba(0, 0, 0, 0.73) 65.52%, #000 100%);
+}
+
+@media (max-width: 1080px) {
+    .line-clamp-3-mobile {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3; /* Số dòng bạn muốn giới hạn */
+        overflow: hidden;
+    }
+}

@@ -1,0 +1,41 @@
+stages:
+  - Deploy
+deploy to dev:
+  stage: Deploy
+  only:
+    - /^develop$/ # Match exact branch name "develop"
+  environment:
+    name: development
+  before_script:
+    # Cài đặt SSH agent và khai báo biến môi trường để sử dụng trong lệnh deploy
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+  script:
+    - echo "Deploying to development environment"
+
+    # Chạy ssh-agent tương ứng với Gitlab Runner hiện tại
+    - eval $(ssh-agent -s)
+
+    # Thêm nội dung của biến SSH_PRIVATE_KEY vào agent store
+    - echo "$SSH_PRIVATE_KEY"
+    - ssh-add <(echo "$SSH_PRIVATE_KEY" | base64 --decode)
+
+    # Tạo folder ~/.ssh
+    - mkdir -p ~/.ssh
+
+    # Scan lấy SSH Host key cho địa chỉ IP server
+    # Được kết quả bao nhiêu thì thêm vào file known_hosts
+    - ssh-keyscan -H $SSH_SERVER_IP >> ~/.ssh/known_hosts
+
+    # Sửa lại quyền của file known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+
+    # Thực hiện SSH vào server, login vào docker, chuyển tới folder project
+    # Pull docker image mới nhất, build lại image, khởi tạo lại containers
+    - >
+      ssh $SSH_USER@$SSH_SERVER_IP
+      "cd ${PATH_TO_PROJECT};
+      git pull origin develop;
+      docker compose exec hns-app npm run build;
+      docker compose exec hns-app php artisan optimize:clear;"
+  tags:
+    - test

@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+    .icon-blue {
+        filter: invert(34%) sepia(96%) saturate(798%) hue-rotate(161deg) brightness(102%) contrast(91%);
+    }
+    .banner-filter{
+        background: linear-gradient(180deg, rgba(20, 19, 19, 0.90) -26.2%, rgba(47, 47, 47, 0.59) 100%);
+    }
+}
